@@ -12,12 +12,22 @@ import java.util.List;
  */
 public class CalculadoraPronosticos {
 
+    /**
+     * Pronostica con F(t+1) = F(t) + alfa * (D(t) - F(t)), partiendo de F(2) = D(1).
+     * Alfa debe estar en [0, 1] y la serie debe contener al menos un periodo.
+     */
     public double suavizacionExponencial(List<Double> serie, double alfa) {
-        double resultado = serie.get(0);
-        for (int i = 1; i < serie.size(); i++) {
-            resultado += alfa * (serie.get(i) - resultado);
+        if (!(alfa >= 0 && alfa <= 1)) {
+            throw new IllegalArgumentException("Alfa debe estar entre 0 y 1");
         }
-        return resultado;
+        if (serie.isEmpty()) {
+            throw new IllegalArgumentException("Se necesita al menos un periodo");
+        }
+        double pronostico = serie.get(0);
+        for (int i = 1; i < serie.size(); i++) {
+            pronostico += alfa * (serie.get(i) - pronostico);
+        }
+        return pronostico;
     }
 
     /**
