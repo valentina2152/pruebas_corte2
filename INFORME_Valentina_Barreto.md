@@ -1,5 +1,27 @@
 # Informe de la actividad — Valentina Barreto
 
+## Actualización de los requisitos
+
+Se incorporó la actualización del profesor `59db024`, que añade los ejemplos
+BDD de promedio móvil, las guías de TDD y análisis estático y un nuevo Paso 8.
+La entrega ahora indica **10 de noviembre de 2026, 11:59 p. m.**
+
+La solución previa todavía no cubre estos requisitos nuevos:
+
+- 8.1: implementar `mse` con pruebas y commits de rojo, verde y refactor.
+- 8.2: diseñar al menos tres casos nuevos de `promedioMovil` y `mad`, con su tabla de riesgos.
+- 8.3: añadir un escenario BDD de otra regla del negocio.
+- 8.4: agregar o ajustar una regla propia de Checkstyle y documentar un hallazgo y su corrección.
+- 8.5: completar la revisión estática con las nueve preguntas y los hallazgos.
+- Paso 9: responder las preguntas adicionales y definir la Definition of Done.
+
+Los resultados de 36 pruebas documentados abajo corresponden a la versión
+anterior a esta actualización. Se conservan como evidencia histórica.
+
+La verificación de la actualización (`mvn clean verify`) pasó con **39 pruebas:
+33 unitarias y 6 escenarios BDD**, sin fallos ni errores; Checkstyle y el mínimo
+de JaCoCo también pasaron. Registro: [actualización del profesor](docs/evidencias/10-actualizacion-profesor.log).
+
 ## Repositorio y evidencias
 
 - Repositorio propio: **pendiente de indicar la URL**.

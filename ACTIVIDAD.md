@@ -1,12 +1,14 @@
 # Actividad · Pruebas de la Unidad 2 y pipeline de CI/CD (Java con Spring Boot)
 
 **Modalidad:** individual
-**Fecha de entrega:** [FECHA DE ENTREGA]
+**Fecha de entrega:** martes 10 de noviembre de 2026, 11:59 p. m.
 **Entrega:** enlace a su repositorio en GitHub, con la actividad completa y el pipeline en verde.
 
 ## Objetivo
 
 Partir de este proyecto, que hoy solo tiene pruebas unitarias en su pipeline, y llevarlo a un pipeline completo: desarrollar un método nuevo con **TDD**, ampliar las **pruebas unitarias**, escribir escenarios **BDD**, aplicar **análisis estático**, medir la **cobertura** y hacer que el **despliegue (simulado)** solo ocurra cuando todo eso pasa.
+
+El proyecto ya trae un ejemplo funcionando de cada tipo de prueba de la unidad (la tabla final del README dice dónde está cada uno). Al final, en el Paso 8, aplican lo aprendido por su cuenta, a partir de requisitos y sin código de guía.
 
 Antes de empezar, lean el [README.md](README.md): ahí están los conceptos y los comandos que se usan en cada paso.
 
@@ -18,7 +20,7 @@ Antes de empezar, lean el [README.md](README.md): ahí están los conceptos y lo
 
 1. Clonen el proyecto y entren a la carpeta:
    ```bash
-   git clone <url-del-repositorio-del-curso>
+   git clone https://github.com/josealfredore2604/pronosticos-java
    cd pronosticos-java
    ```
 2. Quiten el remoto del curso, para no intentar subir cambios a él:
@@ -34,7 +36,7 @@ Antes de empezar, lean el [README.md](README.md): ahí están los conceptos y lo
    ```
 5. En GitHub, abran la pestaña **Actions**.
 
-**Qué deben observar:** el workflow **CI/CD** corriendo con dos jobs: *Pruebas unitarias* y *Despliegue (simulado)*. Abran el job de despliegue: la última línea dice `Desplegado`.
+**Qué deben observar:** el workflow **CI/CD** corriendo con tres jobs: *Pruebas unitarias*, *Pruebas BDD* y *Despliegue (simulado)*. Abran el job de despliegue: la última línea dice `Desplegado`.
 
 ---
 
@@ -44,9 +46,10 @@ Antes de empezar, lean el [README.md](README.md): ahí están los conceptos y lo
 
 ```bash
 mvn test -Dtest='**/unitarias/*Test'
+mvn test -Dtest=RunCucumberTest
 ```
 
-**Qué deben observar:** al final, `Tests run: 10, Failures: 0, Errors: 0` y `BUILD SUCCESS`.
+**Qué deben observar:** en el primero, `Tests run: 10, Failures: 0, Errors: 0` y `BUILD SUCCESS`; en el segundo, `Tests run: 3, Failures: 0, Errors: 0`: los tres escenarios del ejemplo BDD de promedio móvil.
 
 Abran `CalculadoraPronosticos.java` y `MadTest.java`. Fíjense en tres cosas que deben repetir en sus pruebas: cada prueba verifica un solo comportamiento, `@DisplayName` dice qué se espera, y los decimales se comparan con `assertEquals(esperado, obtenido, tolerancia)`.
 
@@ -66,6 +69,8 @@ Donde F es el pronóstico, D la demanda real y α (alfa) un número entre 0 y 1.
 | 120, 132, 128, 141, 138, 150 | 0 | 120.00 (con alfa 0 el pronóstico nunca cambia) |
 | 120, 132, 128, 141, 138, 150 | 1 | 150.00 (con alfa 1 el pronóstico es la última demanda) |
 | cualquiera | −0.1 o 1.5 | `IllegalArgumentException` con el mensaje "Alfa debe estar entre 0 y 1" |
+
+Antes de empezar, lean `docs/EJEMPLO_TDD.md`: muestra el ciclo completo, con salidas reales, aplicado a `mad`.
 
 **Por qué:** en TDD la prueba se escribe primero. Si escriben el código primero, la prueba solo confirma lo que ya hicieron; si la escriben antes, la prueba define qué debe hacer el código.
 
@@ -162,7 +167,7 @@ git commit -m "test: pruebas unitarias de mape y debeGenerarAlerta"
 
 **Por qué:** la regla "el error igual al umbral sí alerta" es una decisión de negocio. En BDD la escribimos de forma que Producción pueda leerla y confirmarla, y esa misma descripción se ejecuta como prueba.
 
-Las dependencias de Cucumber ya están en el `pom.xml`. Necesitan tres archivos.
+Las dependencias de Cucumber ya están en el `pom.xml`, y el proyecto ya tiene un ejemplo funcionando: `src/test/resources/features/promedio_movil.feature`, sus pasos en `src/test/java/pronosticos/bdd/PromedioMovilSteps.java` y el ejecutor `RunCucumberTest`. Úsenlo como modelo; tiene la misma estructura que van a construir aquí, incluido un `Esquema del escenario`. Necesitan dos archivos.
 
 ### 4.1 El escenario
 
@@ -185,7 +190,7 @@ Agreguen ustedes dos escenarios más: el error **igual** al umbral (10 %) y el e
 
 ### 4.2 Los pasos
 
-Creen `src/test/java/pronosticos/bdd/AlertasSteps.java`. Les damos la estructura y el primer paso; completen los demás:
+Creen `src/test/java/pronosticos/bdd/AlertasSteps.java`, en el mismo paquete que `PromedioMovilSteps`. Les damos la estructura y el primer paso; completen los demás:
 
 ```java
 package pronosticos.bdd;
@@ -225,36 +230,15 @@ Al completar los dos `@Entonces` van a necesitar también `import static org.jun
 
 ### 4.3 El ejecutor
 
-Creen `src/test/java/pronosticos/bdd/RunCucumberTest.java`. Esta clase le dice a JUnit que ejecute los escenarios con el motor de Cucumber:
+No tienen que crear nada: `src/test/java/pronosticos/bdd/RunCucumberTest.java` ya existe. Ábranlo y lean su comentario. Ejecuta con Cucumber **todos** los `.feature` de `src/test/resources/features` con **todos** los pasos del paquete `pronosticos.bdd`; por eso basta con que `alertas.feature` y `AlertasSteps` estén en esas ubicaciones. No creen un segundo ejecutor.
 
-```java
-package pronosticos.bdd;
-
-import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
-
-import org.junit.platform.suite.api.ConfigurationParameter;
-import org.junit.platform.suite.api.IncludeEngines;
-import org.junit.platform.suite.api.SelectClasspathResource;
-import org.junit.platform.suite.api.Suite;
-
-/**
- * Suite agrupa pruebas e IncludeEngines("cucumber") hace que se ejecuten con Cucumber.
- * SelectClasspathResource indica dónde están los .feature (src/test/resources/features)
- * y GLUE_PROPERTY_NAME, en qué paquete están los pasos.
- */
-@Suite
-@IncludeEngines("cucumber")
-@SelectClasspathResource("features")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "pronosticos.bdd")
-public class RunCucumberTest {
-}
-```
+Cucumber comparte los pasos de todas las clases del paquete: si escriben en `AlertasSteps` una frase que ya define `PromedioMovilSteps`, Cucumber falla con un error de paso duplicado. Las frases de alertas son distintas, así que no hay conflicto.
 
 ```bash
 mvn test -Dtest=RunCucumberTest
 ```
 
-**Qué deben observar:** `Tests run: 3, Failures: 0`. Si un paso no tiene método, Cucumber lo marca como *undefined* y en la salida propone el código del método que falta.
+**Qué deben observar:** `Tests run: 6, Failures: 0`: los tres escenarios del ejemplo de promedio móvil y los tres de alertas. Si un paso no tiene método, Cucumber lo marca como *undefined* y en la salida propone el código del método que falta.
 
 ```bash
 git add .
@@ -270,6 +254,8 @@ git commit -m "test: escenarios BDD de alertas de desviación"
 ```bash
 mvn checkstyle:check
 ```
+
+La guía completa (qué detecta cada regla, cómo se lee un hallazgo, cómo se corrige y cómo se cambia la configuración) está en `docs/ANALISIS_ESTATICO.md`.
 
 Si aparecen hallazgos en su código, corríjanlos. Cada uno indica archivo, línea, descripción y, entre corchetes, la regla.
 
@@ -364,18 +350,17 @@ Agreguen este job debajo de `jobs:`, al mismo nivel que `pruebas-unitarias`:
 
 En YAML la indentación es parte de la sintaxis: el job tiene que quedar con dos espacios, igual que `pruebas-unitarias`.
 
-### 7.2 Jobs de BDD y de cobertura
+### 7.2 Job de cobertura y job de BDD
 
-Siguiendo el mismo modelo, agreguen ustedes dos jobs más:
+Siguiendo el mismo modelo, agreguen el job `cobertura` (nombre: "Cobertura"), que corra `mvn -B verify`.
 
-- `pruebas-bdd` (nombre: "Pruebas BDD"), que corra `mvn -B test -Dtest=RunCucumberTest`.
-- `cobertura` (nombre: "Cobertura"), que corra `mvn -B verify`.
+Cada job corre en su propia máquina, así que necesita sus dos primeros pasos: descargar el código e instalar Java. Maven ya viene instalado en `ubuntu-latest`.
 
-Cada job corre en su propia máquina, así que cada uno necesita sus dos primeros pasos: descargar el código e instalar Java. Maven ya viene instalado en `ubuntu-latest`.
+El job `pruebas-bdd` ya existe: el proyecto lo trae para ejecutar el ejemplo de promedio móvil, y corre `mvn -B test -Dtest=RunCucumberTest`, que ejecuta todos los `.feature` con todos los pasos de `pronosticos.bdd`. No lo dupliquen. Lean sus comentarios y, después del push del Paso 7.4, abran su registro en Actions y comprueben que sus tres escenarios de alertas también se ejecutan ahí (`Tests run: 6`).
 
 ### 7.3 Que el despliegue dependa de todo
 
-Cambien la línea `needs` del job `despliegue`:
+Cambien la línea `needs` del job `despliegue`, que hoy espera a `pruebas-unitarias` y `pruebas-bdd`:
 
 ```yaml
     needs: [analisis-estatico, pruebas-unitarias, pruebas-bdd, cobertura]
@@ -391,7 +376,7 @@ git commit -m "ci: análisis estático, BDD y cobertura en el pipeline"
 git push
 ```
 
-**Qué deben observar en Actions:** los cuatro jobs de verificación corren en paralelo y, cuando todos pasan, corre el despliegue e imprime `Desplegado`. En la vista del workflow se ve el diagrama con las flechas de `needs`.
+**Qué deben observar en Actions:** los cuatro jobs de verificación corren en paralelo, el job *Pruebas BDD* informa `Tests run: 6` y, cuando todos pasan, corre el despliegue e imprime `Desplegado`. En la vista del workflow se ve el diagrama con las flechas de `needs`.
 
 ### 7.5 Comprobar que el pipeline los protege
 
@@ -402,7 +387,7 @@ git push
    git commit -m "prueba: cambio que rompe la regla del umbral"
    git push
    ```
-3. En Actions, el pipeline queda en rojo: fallan las pruebas que verifican el caso límite y el despliegue **no corre**.
+3. En Actions, el pipeline queda en rojo: fallan la prueba unitaria y el escenario BDD que verifican el caso límite (error igual al umbral), y el despliegue **no corre**.
 4. Reviertan el cambio y suban de nuevo:
    ```bash
    git revert HEAD --no-edit
@@ -414,7 +399,113 @@ Tomen captura de las dos ejecuciones (la roja y la verde) para el informe.
 
 ---
 
-## Paso 8. Informe
+## Paso 8. Práctica propia
+
+**Por qué:** hasta aquí siguieron instrucciones con el código a la vista. En este paso reciben solo el requisito, como en un proyecto real: ustedes deciden qué probar, cómo nombrarlo y cómo diseñarlo. No hay código de guía.
+
+### 8.1 TDD propio: el error cuadrático medio
+
+Construyan con TDD el método `double mse(List<Double> real, List<Double> pronostico)` en `CalculadoraPronosticos`. No existe en el proyecto.
+
+**Requisito.** El error cuadrático medio (MSE, *mean squared error*) es el promedio de los cuadrados de las diferencias entre la demanda real y el pronóstico. Se expresa en unidades al cuadrado. Como cada diferencia se eleva al cuadrado, un error grande pesa mucho más que varios pequeños: Producción lo usa para detectar pronósticos que fallan mucho en pocos periodos.
+
+> MSE = [(D<sub>1</sub> − F<sub>1</sub>)² + (D<sub>2</sub> − F<sub>2</sub>)² + … + (D<sub>n</sub> − F<sub>n</sub>)²] / n
+
+| Real | Pronóstico | Resultado esperado |
+|---|---|---|
+| 141, 138, 150 | 126.67, 133.67, 135.67 | 143.15 = (14.33² + 4.33² + 14.33²) / 3 = (205.3489 + 18.7489 + 205.3489) / 3 |
+
+**Reglas de validación**, las mismas de `mad`:
+
+- Si las series no tienen el mismo número de periodos: `IllegalArgumentException` con el mensaje "Las series deben tener el mismo número de periodos".
+- Si las series están vacías: `IllegalArgumentException` con el mensaje "Se necesita al menos un periodo".
+
+**Ojo con el redondeo.** Si calculan con los pronósticos sin redondear (380/3, 401/3 y 407/3, que es lo que da el promedio móvil exacto), el MSE da 143.22. La tabla usa los pronósticos redondeados a dos decimales, y con ellos da 143.15. Calcúlenlo a mano antes de escribir la prueba.
+
+Qué deben hacer:
+
+1. Decidan ustedes las pruebas: al menos una para el cálculo, una para cada regla de validación y una más que ustedes consideren necesaria. Escríbanlas **de a una**, viendo cada una en rojo antes de escribir el código.
+2. Sigan el ciclo de `docs/EJEMPLO_TDD.md`: rojo, verde con el código mínimo, refactor.
+3. Escriban el método en `CalculadoraPronosticos.java`.
+4. El historial debe mostrar al menos un commit de rojo, uno de verde y uno de refactor, en ese orden. Por ejemplo:
+   ```bash
+   git commit -m "test: prueba en rojo para mse"
+   git commit -m "feat: implementa mse"
+   git commit -m "refactor: mejora la legibilidad de mse"
+   ```
+   Compruébenlo con `git log --oneline`.
+
+### 8.2 Pruebas unitarias diseñadas por ustedes
+
+Propongan **al menos tres casos nuevos** para `promedioMovil` y `mad` (entre las dos) que no estén en las pruebas existentes ni en los ejemplos de `docs/`. Para cada caso, antes de escribirlo, anoten en el informe:
+
+| Función | Entrada | Resultado esperado (calculado a mano) | Qué riesgo cubre |
+|---|---|---|---|
+
+"Qué riesgo cubre" significa qué defecto encontraría la prueba si alguien lo introdujera mañana. Algunas preguntas para pensar (no son la respuesta): ¿qué pasa con decimales? ¿Con una serie de un solo periodo? ¿Importan los valores que quedan fuera de la ventana? ¿Y el signo de la diferencia en `mad`?
+
+Si un caso falla, **no cambien la prueba para que pase**: anoten en el informe qué encontraron y qué debería decidir Producción.
+
+```bash
+mvn test -Dtest='**/unitarias/*Test'
+git add .
+git commit -m "test: casos nuevos para promedioMovil y mad"
+```
+
+### 8.3 BDD propio
+
+Lean `CalculadoraPronosticos.java` y elijan una regla del negocio que todavía no tenga escenario, por ejemplo cómo se calcula el MAPE cuando un periodo tiene demanda 0. Escriban **al menos un escenario** para esa regla, redactado para que Producción lo pueda leer: sin nombres de funciones ni de variables, con los datos y el resultado en palabras del negocio.
+
+Creen un archivo `src/test/resources/features/<nombre>.feature` y su clase de pasos en el paquete `pronosticos.bdd`. `RunCucumberTest` lo ejecuta sin cambios. Cucumber comparte los pasos de todas las clases del paquete: usen frases propias, porque definir dos veces el mismo paso es un error (*duplicate step definition*) y cada clase guarda su propio estado.
+
+```bash
+mvn test -Dtest=RunCucumberTest
+git add .
+git commit -m "test: escenario BDD de una regla propia"
+git push
+```
+
+Si su escenario tiene números con decimales y usan `{double}`, escríbanlos con coma (`2,63`): en un `.feature` en español, Cucumber lee `2.63` como 263 (ver el README, sección BDD).
+
+Comprueben en Actions que su escenario también corre en el job *Pruebas BDD*.
+
+### 8.4 Análisis estático configurado por ustedes
+
+Sigan la sección 6 de `docs/ANALISIS_ESTATICO.md`:
+
+1. Agreguen o ajusten **al menos una regla** en `config/checkstyle.xml`, distinta de los ejemplos del documento (`MagicNumber`, el máximo de `CyclomaticComplexity` o `SuppressWithNearbyCommentFilter`).
+2. Provoquen a propósito un hallazgo de esa regla y guarden la salida.
+3. Corríjanlo. Si deciden no corregirlo, suprímanlo solo en esa línea y con su justificación.
+4. Revisen qué reporta la regla en el código que ya existía y decidan qué hacer.
+5. Dejen `mvn checkstyle:check` sin hallazgos y el pipeline en verde.
+
+```bash
+git add .
+git commit -m "chore: ajusta la configuración del análisis estático"
+git push
+```
+
+### 8.5 Revisión estática con checklist
+
+Elijan un método de `CalculadoraPronosticos.java` (`promedioMovil`, `mape`, `debeGenerarAlerta` o `validarSeries`; no `mad`, que ya está analizado en `docs/EJEMPLO_TDD.md`, ni los que escribieron ustedes) y revísenlo con este checklist. Es una revisión informal e individual (ver "Revisiones estáticas" en el README): lean el código sin ejecutarlo.
+
+| # | Pregunta |
+|---|---|
+| 1 | ¿El nombre dice qué hace, sin tener que leer el cuerpo? |
+| 2 | ¿Los nombres de las variables y los parámetros dicen qué contienen? |
+| 3 | ¿Tiene una sola responsabilidad (calcula, o valida, o presenta, pero no varias)? |
+| 4 | ¿Repite lógica que ya existe en otro lugar? |
+| 5 | ¿Hay números escritos directamente que deberían tener nombre? |
+| 6 | ¿Los comentarios explican el porqué y no repiten lo que el código ya dice? |
+| 7 | ¿Cada dato inválido produce un error explícito, con un mensaje que dice qué está mal? |
+| 8 | ¿Se entiende de una lectura? ¿Cuántas decisiones tiene? |
+| 9 | ¿Cada comportamiento tiene al menos una prueba? ¿Cuál falta? |
+
+En el informe copien la tabla con su respuesta (sí o no) y la evidencia de cada pregunta (línea del código y explicación). Anoten **al menos dos hallazgos**: qué encontraron, dónde, por qué es un problema y qué propondrían. Si no encuentran ninguno, expliquen con el checklist por qué el método ya cumple. No hace falta cambiar el código; si deciden hacerlo, primero una prueba que lo proteja.
+
+---
+
+## Paso 9. Informe
 
 Creen en la raíz del repositorio el archivo `INFORME_<Nombre>_<Apellido>.md` con:
 
@@ -427,6 +518,12 @@ Creen en la raíz del repositorio el archivo `INFORME_<Nombre>_<Apellido>.md` co
    - ¿Por qué las pruebas unitarias crean la calculadora con `new` en lugar de levantar Spring?
    - ¿Qué diferencia hay entre una prueba unitaria y un escenario BDD en este proyecto?
    - En el Paso 7.5, ¿qué pruebas fallaron y por qué el despliegue no corrió?
+   - Paso 8.1: ¿qué prueba escribieron primero y por qué? ¿Por qué el MSE de la tabla es 143.15 y no 143.22, y cuál de los dos debería usar Producción?
+   - Paso 8.2: la tabla de sus tres casos nuevos, con el riesgo que cubre cada uno.
+   - Paso 8.3: ¿qué regla eligieron, dónde está en el código y por qué su escenario es una prueba funcional y no una unitaria?
+   - Paso 8.4: ¿qué regla agregaron o ajustaron, qué hallazgo provocaron, qué encontró en el código existente y qué decidieron?
+   - Paso 8.5: el checklist completo y sus hallazgos. ¿Qué encontraron ustedes que una herramienta de análisis estático no habría encontrado?
+   - Si este proyecto fuera una historia de usuario en un sprint, ¿qué pondrían en su *Definition of Done* y en qué momento debería participar quien prueba?
 
 ```bash
 git add .
@@ -441,7 +538,13 @@ git push
 - [ ] El repositorio es suyo y el último pipeline está en verde.
 - [ ] `suavizacionExponencial` existe y el historial muestra los commits de rojo, verde y refactor.
 - [ ] Hay pruebas unitarias de `suavizacionExponencial`, `mape` y `debeGenerarAlerta`, con los casos de las tablas.
-- [ ] `alertas.feature` tiene `# language: es` en la primera línea y tres escenarios; existen `AlertasSteps` y `RunCucumberTest`.
+- [ ] `alertas.feature` tiene `# language: es` en la primera línea y tres escenarios; `AlertasSteps` está en `pronosticos.bdd` y se ejecuta con el `RunCucumberTest` del proyecto.
+- [ ] Los escenarios de alertas corren en el job *Pruebas BDD* que ya trae el pipeline.
+- [ ] `mse` existe, cumple el requisito del Paso 8.1 y el historial muestra los commits de rojo, verde y refactor.
+- [ ] Hay al menos tres casos unitarios nuevos para promedio móvil y `mad`, justificados en el informe.
+- [ ] Hay al menos un `.feature` propio con un escenario nuevo, y corre en el job *Pruebas BDD*.
+- [ ] La configuración del análisis estático tiene al menos una regla agregada o ajustada, explicada en el informe.
+- [ ] El informe tiene el checklist de la revisión estática con al menos dos hallazgos o la justificación de por qué no hay.
 - [ ] `mvn checkstyle:check` no reporta nada.
 - [ ] El `pom.xml` tiene la verificación de cobertura y `mvn verify` termina con `BUILD SUCCESS`.
 - [ ] El workflow tiene los jobs de análisis estático, pruebas unitarias, BDD, cobertura y despliegue, y el despliegue depende de los cuatro.
@@ -451,12 +554,18 @@ git push
 
 | Criterio | Peso |
 |---|---|
-| TDD: método correcto y commits de rojo, verde y refactor | 20 % |
-| Pruebas unitarias: casos completos, nombres claros, tolerancia numérica | 20 % |
-| BDD: escenarios correctos en español, pasos y ejecutor | 15 % |
-| Análisis estático y cobertura con verificación de JaCoCo | 15 % |
-| Pipeline: jobs correctos, `needs` del despliegue y evidencia del rojo y el verde | 20 % |
+| TDD: método correcto y commits de rojo, verde y refactor | 15 % |
+| Pruebas unitarias: casos completos, nombres claros, tolerancia numérica | 10 % |
+| BDD: escenarios de alertas correctos en español y pasos que los ejecutan | 10 % |
+| Análisis estático y cobertura con verificación de JaCoCo | 10 % |
+| Pipeline: job de cobertura, escenarios de alertas en el job de BDD, `needs` del despliegue y evidencia del rojo y el verde | 15 % |
+| TDD propio: `mse` correcto, pruebas decididas por ustedes y commits de rojo, verde y refactor | 10 % |
+| Pruebas unitarias diseñadas por ustedes: casos nuevos y riesgo justificado | 5 % |
+| BDD propio: escenario legible para Producción y pasos que lo ejecutan | 5 % |
+| Análisis estático configurado por ustedes: regla, hallazgo y decisión explicada | 5 % |
+| Revisión estática: checklist completo y hallazgos razonados | 5 % |
 | Informe: respuestas razonadas con sus palabras | 10 % |
+| **Total** | **100 %** |
 
 ## Documentación oficial
 
