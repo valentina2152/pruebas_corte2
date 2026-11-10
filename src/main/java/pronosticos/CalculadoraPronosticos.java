@@ -12,6 +12,14 @@ import java.util.List;
  */
 public class CalculadoraPronosticos {
 
+    public double suavizacionExponencial(List<Double> serie, double alfa) {
+        double resultado = serie.get(0);
+        for (int i = 1; i < serie.size(); i++) {
+            resultado += alfa * (serie.get(i) - resultado);
+        }
+        return resultado;
+    }
+
     /**
      * Pronostica el siguiente periodo con el promedio de los últimos {@code ventana} valores.
      * Ejemplo: serie [120, 132, 128, 141, 138, 150] y ventana 3 → (141 + 138 + 150) / 3 = 143.
