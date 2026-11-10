@@ -1,0 +1,140 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24445 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO]
+[INFO] -------------------< curso.pruebas:pronosticos-java >-------------------
+[INFO] Building pronosticos-java 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO]
+[INFO] --- checkstyle:3.6.0:check (analisis-estatico) @ pronosticos-java ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_expired) PKIX path validation failed: java.security.cert.CertPathValidatorException: validity check failed
+[INFO] Comenzando auditor�a...
+Auditor�a concluida.
+[INFO] You have 0 Checkstyle violations.
+[INFO]
+[INFO] --- jacoco:0.8.14:prepare-agent (preparar-agente) @ pronosticos-java ---
+[INFO] argLine set to "-javaagent:C:\\Users\\VALENTINA BARRETO\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.14\\org.jacoco.agent-0.8.14-runtime.jar=destfile=C:\\Users\\VALENTINA BARRETO\\Downloads\\pruebasCorte1\\target\\jacoco.exec,excludes=pronosticos/PronosticosApplication.class:pronosticos/PronosticoController*.class"
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ pronosticos-java ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.15.0:compile (default-compile) @ pronosticos-java ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ pronosticos-java ---
+[INFO] Copying 2 resources from src\test\resources to target\test-classes
+[INFO]
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ pronosticos-java ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ pronosticos-java ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+nov 10, 2026 5:07:05 P. M. org.junit.platform.launcher.core.DiscoveryIssueNotifier logIssues
+ADVERTENCIA: TestEngine with ID 'junit-platform-suite' encountered a non-critical issue during test discovery:
+
+(1) [WARNING] [cucumber] The classpath resource selector 'features' should not be used to select features in a package. Use the package selector with 'features' instead (via @Suite pronosticos.bdd.RunCucumberTest).
+[INFO] Running pronosticos.unitarias.AlertasTest
+[ERROR] Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.609 s <<< FAILURE! -- in pronosticos.unitarias.AlertasTest
+[ERROR] pronosticos.unitarias.AlertasTest.aceptaUmbralesLimite(double)[1] -- Time elapsed: 0.022 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:69)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:41)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:195)
+	at pronosticos.unitarias.AlertasTest.aceptaUmbralesLimite(AlertasTest.java:50)
+
+[ERROR] pronosticos.unitarias.AlertasTest.aceptaUmbralesLimite(double)[2] -- Time elapsed: 0.007 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:69)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:41)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:195)
+	at pronosticos.unitarias.AlertasTest.aceptaUmbralesLimite(AlertasTest.java:50)
+
+[ERROR] pronosticos.unitarias.AlertasTest.alertaAlIgualarUmbral -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:69)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:41)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:195)
+	at pronosticos.unitarias.AlertasTest.alertaAlIgualarUmbral(AlertasTest.java:28)
+
+[INFO] Running pronosticos.bdd.RunCucumberTest
+
+Escenario: El error supera el umbral       # classpath:features/alertas.feature:7
+  ✔ Dado un umbral de alerta de 10 %       # pronosticos.bdd.AlertasSteps.unUmbralDeAlertaDe(int)
+  ✔ Cuando el error del pronóstico es 12 % # pronosticos.bdd.AlertasSteps.elErrorDelPronosticoEs(int)
+  ✔ Entonces se genera una alerta          # pronosticos.bdd.AlertasSteps.seGeneraUnaAlerta()
+
+Escenario: El error es igual al umbral     # classpath:features/alertas.feature:12
+  ✔ Dado un umbral de alerta de 10 %       # pronosticos.bdd.AlertasSteps.unUmbralDeAlertaDe(int)
+  ✔ Cuando el error del pronóstico es 10 % # pronosticos.bdd.AlertasSteps.elErrorDelPronosticoEs(int)
+  ✘ Entonces se genera una alerta          # pronosticos.bdd.AlertasSteps.seGeneraUnaAlerta()
+        org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+        	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:158)
+        	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:139)
+        	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:69)
+        	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:41)
+        	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:35)
+        	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:195)
+        	at pronosticos.bdd.AlertasSteps.seGeneraUnaAlerta(AlertasSteps.java:31)
+        	at ✽.se genera una alerta(classpath:features/alertas.feature:15)
+
+Escenario: El error está por debajo del umbral # classpath:features/alertas.feature:17
+  ✔ Dado un umbral de alerta de 10 %           # pronosticos.bdd.AlertasSteps.unUmbralDeAlertaDe(int)
+  ✔ Cuando el error del pronóstico es 7 %      # pronosticos.bdd.AlertasSteps.elErrorDelPronosticoEs(int)
+  ✔ Entonces no se genera una alerta           # pronosticos.bdd.AlertasSteps.noSeGeneraUnaAlerta()
+nov 10, 2026 5:07:09 P. M. org.junit.platform.launcher.core.DiscoveryIssueNotifier logIssues
+ADVERTENCIA: TestEngine with ID 'cucumber' encountered a non-critical issue during test discovery:
+
+(1) [WARNING] The classpath resource selector 'features' should not be used to select features in a package. Use the package selector with 'features' instead
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.092 s <<< FAILURE! -- in pronosticos.bdd.RunCucumberTest
+[ERROR] pronosticos.bdd.RunCucumberTest.El error es igual al umbral -- Time elapsed: 0.025 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at pronosticos.bdd.AlertasSteps.seGeneraUnaAlerta(AlertasSteps.java:31)
+	at ?.se genera una alerta(classpath:features/alertas.feature:15)
+
+nov 10, 2026 5:07:09 P. M. org.junit.platform.launcher.core.DiscoveryIssueNotifier logIssues
+ADVERTENCIA: TestEngine with ID 'junit-platform-suite' encountered a non-critical issue during test discovery:
+
+(1) [WARNING] [cucumber] The classpath resource selector 'features' should not be used to select features in a package. Use the package selector with 'features' instead (via @Suite pronosticos.bdd.RunCucumberTest).
+[INFO]
+[INFO] Results:
+[INFO]
+[ERROR] Failures:
+[ERROR]   RunCucumberTest.El error es igual al umbral expected: <true> but was: <false>
+[ERROR]   AlertasTest.aceptaUmbralesLimite:50 expected: <true> but was: <false>
+[ERROR]   AlertasTest.aceptaUmbralesLimite:50 expected: <true> but was: <false>
+[ERROR]   AlertasTest.alertaAlIgualarUmbral:28 expected: <true> but was: <false>
+[INFO]
+[ERROR] Tests run: 10, Failures: 4, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.730 s
+[INFO] Finished at: 2026-11-10T17:07:09-05:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.6:test (default-test) on project pronosticos-java: There are test failures.
+[ERROR]
+[ERROR] See C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\target\surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

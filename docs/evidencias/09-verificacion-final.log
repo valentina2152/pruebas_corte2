@@ -1,0 +1,109 @@
+[INFO] Scanning for projects...
+[INFO] Loaded 24445 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO]
+[INFO] -------------------< curso.pruebas:pronosticos-java >-------------------
+[INFO] Building pronosticos-java 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO]
+[INFO] --- clean:3.5.0:clean (default-clean) @ pronosticos-java ---
+[INFO] Deleting C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\target
+[INFO]
+[INFO] --- checkstyle:3.6.0:check (analisis-estatico) @ pronosticos-java ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_expired) PKIX path validation failed: java.security.cert.CertPathValidatorException: validity check failed
+[INFO] Comenzando auditor�a...
+Auditor�a concluida.
+[INFO] You have 0 Checkstyle violations.
+[INFO]
+[INFO] --- jacoco:0.8.14:prepare-agent (preparar-agente) @ pronosticos-java ---
+[INFO] argLine set to "-javaagent:C:\\Users\\VALENTINA BARRETO\\.m2\\repository\\org\\jacoco\\org.jacoco.agent\\0.8.14\\org.jacoco.agent-0.8.14-runtime.jar=destfile=C:\\Users\\VALENTINA BARRETO\\Downloads\\pruebasCorte1\\target\\jacoco.exec,excludes=pronosticos/PronosticosApplication.class:pronosticos/PronosticoController*.class"
+[INFO]
+[INFO] --- resources:3.5.0:resources (default-resources) @ pronosticos-java ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.15.0:compile (default-compile) @ pronosticos-java ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug parameters release 21] to target\classes
+[INFO]
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ pronosticos-java ---
+[INFO] Copying 2 resources from src\test\resources to target\test-classes
+[INFO]
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ pronosticos-java ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug parameters release 21] to target\test-classes
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ pronosticos-java ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+nov 10, 2026 5:07:55 P. M. org.junit.platform.launcher.core.DiscoveryIssueNotifier logIssues
+ADVERTENCIA: TestEngine with ID 'junit-platform-suite' encountered a non-critical issue during test discovery:
+
+(1) [WARNING] [cucumber] The classpath resource selector 'features' should not be used to select features in a package. Use the package selector with 'features' instead (via @Suite pronosticos.bdd.RunCucumberTest).
+[INFO] Running pronosticos.unitarias.AlertasTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.445 s -- in pronosticos.unitarias.AlertasTest
+[INFO] Running pronosticos.unitarias.MadTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 s -- in pronosticos.unitarias.MadTest
+[INFO] Running pronosticos.unitarias.MapeTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.153 s -- in pronosticos.unitarias.MapeTest
+[INFO] Running pronosticos.unitarias.PromedioMovilTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 s -- in pronosticos.unitarias.PromedioMovilTest
+[INFO] Running pronosticos.unitarias.SuavizacionExponencialTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.232 s -- in pronosticos.unitarias.SuavizacionExponencialTest
+[INFO] Running pronosticos.bdd.RunCucumberTest
+
+Escenario: El error supera el umbral       # classpath:features/alertas.feature:7
+  ✔ Dado un umbral de alerta de 10 %       # pronosticos.bdd.AlertasSteps.unUmbralDeAlertaDe(int)
+  ✔ Cuando el error del pronóstico es 12 % # pronosticos.bdd.AlertasSteps.elErrorDelPronosticoEs(int)
+  ✔ Entonces se genera una alerta          # pronosticos.bdd.AlertasSteps.seGeneraUnaAlerta()
+
+Escenario: El error es igual al umbral     # classpath:features/alertas.feature:12
+  ✔ Dado un umbral de alerta de 10 %       # pronosticos.bdd.AlertasSteps.unUmbralDeAlertaDe(int)
+  ✔ Cuando el error del pronóstico es 10 % # pronosticos.bdd.AlertasSteps.elErrorDelPronosticoEs(int)
+  ✔ Entonces se genera una alerta          # pronosticos.bdd.AlertasSteps.seGeneraUnaAlerta()
+
+Escenario: El error está por debajo del umbral # classpath:features/alertas.feature:17
+  ✔ Dado un umbral de alerta de 10 %           # pronosticos.bdd.AlertasSteps.unUmbralDeAlertaDe(int)
+  ✔ Cuando el error del pronóstico es 7 %      # pronosticos.bdd.AlertasSteps.elErrorDelPronosticoEs(int)
+  ✔ Entonces no se genera una alerta           # pronosticos.bdd.AlertasSteps.noSeGeneraUnaAlerta()
+nov 10, 2026 5:07:59 P. M. org.junit.platform.launcher.core.DiscoveryIssueNotifier logIssues
+ADVERTENCIA: TestEngine with ID 'cucumber' encountered a non-critical issue during test discovery:
+
+(1) [WARNING] The classpath resource selector 'features' should not be used to select features in a package. Use the package selector with 'features' instead
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.450 s -- in pronosticos.bdd.RunCucumberTest
+nov 10, 2026 5:07:59 P. M. org.junit.platform.launcher.core.DiscoveryIssueNotifier logIssues
+ADVERTENCIA: TestEngine with ID 'junit-platform-suite' encountered a non-critical issue during test discovery:
+
+(1) [WARNING] [cucumber] The classpath resource selector 'features' should not be used to select features in a package. Use the package selector with 'features' instead (via @Suite pronosticos.bdd.RunCucumberTest).
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 36, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jacoco:0.8.14:report (reporte) @ pronosticos-java ---
+[INFO] Loading execution data file C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\target\jacoco.exec
+[INFO] Analyzed bundle 'pronosticos-java' with 1 classes
+[INFO]
+[INFO] --- jar:3.5.1:jar (default-jar) @ pronosticos-java ---
+[INFO] Building jar: C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\target\pronosticos-java-1.0.0.jar
+[INFO]
+[INFO] --- spring-boot:4.1.1:repackage (repackage) @ pronosticos-java ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
+[INFO] Replacing main artifact C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\target\pronosticos-java-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\target\pronosticos-java-1.0.0.jar.original
+[INFO]
+[INFO] --- jacoco:0.8.14:check (verificar-cobertura) @ pronosticos-java ---
+[INFO] Loading execution data file C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\target\jacoco.exec
+[INFO] Analyzed bundle 'pronosticos-java' with 1 classes
+[INFO] All coverage checks have been met.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  25.149 s
+[INFO] Finished at: 2026-11-10T17:08:02-05:00
+[INFO] ------------------------------------------------------------------------

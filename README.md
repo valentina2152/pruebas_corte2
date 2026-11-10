@@ -6,6 +6,36 @@ No usa bases de datos, contenedores ni servicios externos: solo Java y Maven. Sp
 
 La actividad que deben desarrollar está en [ACTIVIDAD.md](ACTIVIDAD.md).
 
+## Solución del Corte 2
+
+Se implementó `suavizacionExponencial(serie, alfa)` mediante TDD. Las pruebas
+cubren MAPE, alertas y validaciones, y Cucumber ejecuta los tres escenarios de
+alerta definidos en español. El historial conserva los estados rojo, verde y
+refactor; las salidas están en `docs/evidencias/`.
+
+Con Java 21 y Maven, la verificación completa se ejecuta con:
+
+```bash
+mvn clean verify
+```
+
+Este comando revisa Checkstyle, ejecuta todas las pruebas y exige como mínimo
+90 % de cobertura de líneas y ramas. Los reportes quedan en
+`target/site/jacoco/index.html`, `target/cucumber.html` y `target/surefire-reports/`.
+Las exclusiones de la capa HTTP se mantienen según la actividad.
+
+El workflow ejecuta análisis estático, pruebas unitarias, BDD y cobertura en
+cuatro jobs. El despliegue simulado requiere que los cuatro pasen y que el evento
+sea un push a `main`. El job de cobertura conserva los reportes como artefactos.
+
+Para reproducir los fallos controlados de Checkstyle, alertas y cobertura en
+Windows, ejecutar `./scripts/comprobar-bloqueos.ps1` desde PowerShell con Java 21
+en `JAVA_HOME`. El script restaura el código tras cada mutación y termina con
+una verificación limpia. No equivale a ejecutar GitHub Actions.
+
+La entrega remota y sus capturas se completan siguiendo [docs/ENTREGA.md](docs/ENTREGA.md).
+El borrador del informe está en [INFORME_Valentina_Barreto.md](INFORME_Valentina_Barreto.md).
+
 ---
 
 ## Qué hace
