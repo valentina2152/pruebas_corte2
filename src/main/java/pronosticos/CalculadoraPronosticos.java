@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class CalculadoraPronosticos {
 
+
+
     /**
      * Pronostica con F(t+1) = F(t) + alfa * (D(t) - F(t)), partiendo de F(2) = D(1).
      * Alfa debe estar en [0, 1] y la serie debe contener al menos un periodo.
