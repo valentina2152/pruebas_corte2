@@ -31,4 +31,12 @@ class MseTest {
                 IllegalArgumentException.class, () -> calculadora.mse(List.of(10.0, 20.0), List.of(10.0)));
         assertEquals("Las series deben tener el mismo número de periodos", error.getMessage());
     }
+
+    @Test
+    @DisplayName("Rechaza series vacias con el mensaje acordado")
+    void rechazaSeriesVacias() {
+        IllegalArgumentException error = org.junit.jupiter.api.Assertions.assertThrows(
+                IllegalArgumentException.class, () -> calculadora.mse(List.of(), List.of()));
+        assertEquals("Se necesita al menos un periodo", error.getMessage());
+    }
 }
