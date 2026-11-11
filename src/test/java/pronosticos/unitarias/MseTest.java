@@ -23,4 +23,12 @@ class MseTest {
     void pronosticoExacto() {
         assertEquals(0.0, calculadora.mse(List.of(10.0, 20.0), List.of(10.0, 20.0)), 0.000001);
     }
+
+    @Test
+    @DisplayName("Rechaza series de distinta longitud con el mensaje acordado")
+    void rechazaLongitudesDistintas() {
+        IllegalArgumentException error = org.junit.jupiter.api.Assertions.assertThrows(
+                IllegalArgumentException.class, () -> calculadora.mse(List.of(10.0, 20.0), List.of(10.0)));
+        assertEquals("Las series deben tener el mismo número de periodos", error.getMessage());
+    }
 }
