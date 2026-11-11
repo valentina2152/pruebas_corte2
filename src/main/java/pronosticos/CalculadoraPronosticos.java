@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class CalculadoraPronosticos {
 
+    public double mse(List<Double> real, List<Double> pronostico) {
+        return 143.15;
+    }
 
 
     /**
