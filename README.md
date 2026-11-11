@@ -8,9 +8,9 @@ La actividad que deben desarrollar está en [ACTIVIDAD.md](ACTIVIDAD.md) (en Git
 
 ## Solución del Corte 2
 
-Se implementó `suavizacionExponencial(serie, alfa)` mediante TDD. Las pruebas
+Se implementaron `suavizacionExponencial(serie, alfa)` y `mse(real, pronostico)` mediante TDD. Las pruebas
 cubren MAPE, alertas y validaciones, y Cucumber ejecuta los tres escenarios de
-alerta y los tres ejemplos de promedio móvil añadidos por el profesor. El historial conserva los estados rojo, verde y
+alerta, los tres ejemplos de promedio móvil y un escenario propio de MAPE con demanda cero. El historial conserva los estados rojo, verde y
 refactor; las salidas están en `docs/evidencias/`.
 
 Con Java 21 y Maven, la verificación completa se ejecuta con:
@@ -34,11 +34,12 @@ en `JAVA_HOME`. El script restaura el código tras cada mutación y termina con
 una verificación limpia. No equivale a ejecutar GitHub Actions.
 
 La entrega remota y sus capturas se completan siguiendo [docs/ENTREGA.md](docs/ENTREGA.md).
-El borrador del informe está en [INFORME_Valentina_Barreto.md](INFORME_Valentina_Barreto.md).
+El informe está en [INFORME_Valentina_Barreto.md](INFORME_Valentina_Barreto.md).
 
 La actualización del profesor `59db024` agrega una práctica propia en el Paso 8
-de `ACTIVIDAD.md`. Esa ampliación (MSE con TDD, casos propios, otro escenario BDD,
-una regla de análisis estático y revisión con checklist) está pendiente.
+de `ACTIVIDAD.md`. Su desarrollo se documenta en [PRACTICA_PROPIA.md](docs/PRACTICA_PROPIA.md),
+[CASOS_PROPIOS.md](docs/CASOS_PROPIOS.md) y [REVISION_ESTATICA.md](docs/REVISION_ESTATICA.md).
+La regla adicional `EmptyStatement` se comprueba con `./scripts/comprobar-regla-propia.ps1`.
 
 ---
 
@@ -48,6 +49,7 @@ una regla de análisis estático y revisión con checklist) está pendiente.
 |---|---|---|
 | `promedioMovil(serie, ventana)` | Pronóstico del siguiente periodo con el promedio de los últimos `ventana` valores | Ventana 3: (141 + 138 + 150) / 3 = 143,00 |
 | `mad(real, pronostico)` | Error absoluto medio, en unidades | 11,00 para los periodos 4 a 6 |
+| `mse(real, pronostico)` | Error cuadrático medio, en unidades al cuadrado | 143,15 usando los pronósticos redondeados a dos decimales |
 | `mape(real, pronostico)` | Error porcentual absoluto medio; excluye los periodos con demanda 0 | 7,62 % para los periodos 4 a 6 |
 | `debeGenerarAlerta(error, umbral)` | Si un error debe disparar una alerta; alerta cuando el error es mayor **o igual** al umbral | Error 10 % con umbral 10 %: sí alerta |
 

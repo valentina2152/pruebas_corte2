@@ -6,14 +6,23 @@ Se incorporó la actualización del profesor `59db024`, que añade los ejemplos
 BDD de promedio móvil, las guías de TDD y análisis estático y un nuevo Paso 8.
 La entrega ahora indica **10 de noviembre de 2026, 11:59 p. m.**
 
-La solución previa todavía no cubre estos requisitos nuevos:
+Los requisitos nuevos se desarrollaron así:
 
-- 8.1: implementar `mse` con pruebas y commits de rojo, verde y refactor.
-- 8.2: diseñar al menos tres casos nuevos de `promedioMovil` y `mad`, con su tabla de riesgos.
-- 8.3: añadir un escenario BDD de otra regla del negocio.
-- 8.4: agregar o ajustar una regla propia de Checkstyle y documentar un hallazgo y su corrección.
-- 8.5: completar la revisión estática con las nueve preguntas y los hallazgos.
-- Paso 9: responder las preguntas adicionales y definir la Definition of Done.
+- 8.1: `mse` tiene cuatro pruebas y nueve commits que muestran los ciclos rojo, verde y refactor.
+- 8.2: [tres casos nuevos y su tabla de riesgos](docs/CASOS_PROPIOS.md), implementados en `CasosPropiosTest`.
+- 8.3: `desviacion_porcentual.feature` comprueba la exclusión de demanda cero en MAPE.
+- 8.4: regla `EmptyStatement`, con [fallo provocado](docs/evidencias/regla-propia-rojo.log) y [corrección verificada](docs/evidencias/regla-propia-verde.log).
+- 8.5: [checklist completo y tres hallazgos](docs/REVISION_ESTATICA.md).
+- Paso 9: [respuestas de la práctica y Definition of Done](docs/PRACTICA_PROPIA.md).
+
+La primera prueba de MSE define el cálculo del requisito; después se comprueban
+pronósticos exactos y cada validación por separado. La justificación de 143.15
+frente a 143.22, la decisión propuesta sobre redondeo y la participación de quien
+prueba están explicadas en el documento de práctica propia enlazado arriba.
+
+La regla `EmptyStatement` detectó una sentencia vacía introducida deliberadamente.
+Al quitarla, Checkstyle no encontró infracciones en producción ni pruebas, incluido
+el código existente. No fue necesario suprimir ninguna advertencia.
 
 Los resultados de 36 pruebas documentados abajo corresponden a la versión
 anterior a esta actualización. Se conservan como evidencia histórica.
@@ -24,13 +33,22 @@ de JaCoCo también pasaron. Registro: [actualización del profesor](docs/evidenc
 
 ## Repositorio y evidencias
 
-- Repositorio propio: **pendiente de indicar la URL**.
+### Verificación completa del Paso 8
+
+`mvn clean verify` terminó con **47 pruebas correctas: 40 unitarias y 7 escenarios
+BDD**, cero errores y cero omisiones. Checkstyle no reportó infracciones.
+JaCoCo alcanzó **51/51 líneas y 34/34 ramas (100 %)** de la calculadora, incluido
+MSE. [Registro completo](docs/evidencias/11-paso8-completo.log).
+
+![Cobertura actualizada con MSE](docs/evidencias/jacoco-paso8.png)
+
+- Repositorio propio: [valentina2152/pruebas_corte2](https://github.com/valentina2152/pruebas_corte2).
 - Pipeline rojo en GitHub Actions: **pendiente de ejecución y captura**.
 - Pipeline verde en GitHub Actions: **pendiente de ejecución y captura**.
 - Reporte de cobertura: `target/site/jacoco/index.html` después de `mvn clean verify`.
 - Evidencias locales de TDD: carpeta [docs/evidencias](docs/evidencias).
 
-### Resultados locales comprobados
+### Resultados locales anteriores al Paso 8
 
 `mvn clean verify` terminó con `BUILD SUCCESS`: **36 pruebas**, sin fallos ni
 errores (33 casos unitarios y 3 escenarios BDD). Checkstyle reportó cero
