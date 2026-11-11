@@ -12,19 +12,19 @@ import java.util.List;
  */
 public class CalculadoraPronosticos {
 
+    /**
+     * Error cuadratico medio (MSE), en unidades al cuadrado.
+     * Elevar cada diferencia al cuadrado da mayor peso a las desviaciones grandes.
+     */
     public double mse(List<Double> real, List<Double> pronostico) {
-        if (real.size() != pronostico.size()) {
-            throw new IllegalArgumentException("Las series deben tener el mismo número de periodos");
-        }
-        if (real.isEmpty()) {
-            throw new IllegalArgumentException("Se necesita al menos un periodo");
-        }
-        double suma = 0;
+        validarSeries(real, pronostico);
+
+        double sumaCuadrados = 0;
         for (int i = 0; i < real.size(); i++) {
             double diferencia = real.get(i) - pronostico.get(i);
-            suma += diferencia * diferencia;
+            sumaCuadrados += diferencia * diferencia;
         }
-        return suma / real.size();
+        return sumaCuadrados / real.size();
     }
 
 
