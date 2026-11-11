@@ -16,6 +16,9 @@ public class CalculadoraPronosticos {
         if (real.size() != pronostico.size()) {
             throw new IllegalArgumentException("Las series deben tener el mismo número de periodos");
         }
+        if (real.isEmpty()) {
+            throw new IllegalArgumentException("Se necesita al menos un periodo");
+        }
         double suma = 0;
         for (int i = 0; i < real.size(); i++) {
             double diferencia = real.get(i) - pronostico.get(i);
