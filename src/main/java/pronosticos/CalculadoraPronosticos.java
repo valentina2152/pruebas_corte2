@@ -13,6 +13,9 @@ import java.util.List;
 public class CalculadoraPronosticos {
 
     public double mse(List<Double> real, List<Double> pronostico) {
+        if (real.size() != pronostico.size()) {
+            throw new IllegalArgumentException("Las series deben tener el mismo número de periodos");
+        }
         double suma = 0;
         for (int i = 0; i < real.size(); i++) {
             double diferencia = real.get(i) - pronostico.get(i);
