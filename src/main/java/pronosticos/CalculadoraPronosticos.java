@@ -13,7 +13,12 @@ import java.util.List;
 public class CalculadoraPronosticos {
 
     public double mse(List<Double> real, List<Double> pronostico) {
-        return 143.15;
+        double suma = 0;
+        for (int i = 0; i < real.size(); i++) {
+            double diferencia = real.get(i) - pronostico.get(i);
+            suma += diferencia * diferencia;
+        }
+        return suma / real.size();
     }
 
 
