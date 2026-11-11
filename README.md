@@ -33,7 +33,7 @@ Windows, ejecutar `./scripts/comprobar-bloqueos.ps1` desde PowerShell con Java 2
 en `JAVA_HOME`. El script restaura el código tras cada mutación y termina con
 una verificación limpia. No equivale a ejecutar GitHub Actions.
 
-La entrega remota y sus capturas se completan siguiendo [docs/ENTREGA.md](docs/ENTREGA.md).
+La entrega remota y sus capturas están documentadas en [docs/ENTREGA.md](docs/ENTREGA.md).
 El informe está en [INFORME_Valentina_Barreto.md](INFORME_Valentina_Barreto.md).
 
 La actualización del profesor `59db024` agrega una práctica propia en el Paso 8

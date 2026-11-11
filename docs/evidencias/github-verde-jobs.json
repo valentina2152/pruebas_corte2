@@ -1,0 +1,401 @@
+﻿{
+    "total_count":  5,
+    "jobs":  [
+                 {
+                     "id":  130858755230,
+                     "run_id":  43120295469,
+                     "workflow_name":  "CI/CD",
+                     "head_branch":  "main",
+                     "run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/runs/43120295469",
+                     "run_attempt":  1,
+                     "node_id":  "CR_kwDOVp7QUc8AAAAed8okng",
+                     "head_sha":  "c39a9797676b57f434634af876a1fecb6b816477",
+                     "url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/jobs/130858755230",
+                     "html_url":  "https://github.com/valentina2152/pruebas_corte2/actions/runs/43120295469/job/130858755230",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "created_at":  "2026-11-11T23:30:11Z",
+                     "started_at":  "2026-11-11T23:30:13Z",
+                     "completed_at":  "2026-11-11T23:30:28Z",
+                     "name":  "Análisis estático",
+                     "steps":  [
+                                   {
+                                       "name":  "Set up job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  1,
+                                       "started_at":  "2026-11-11T23:30:14Z",
+                                       "completed_at":  "2026-11-11T23:30:15Z"
+                                   },
+                                   {
+                                       "name":  "Run actions/checkout@v6",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  2,
+                                       "started_at":  "2026-11-11T23:30:15Z",
+                                       "completed_at":  "2026-11-11T23:30:16Z"
+                                   },
+                                   {
+                                       "name":  "Run actions/setup-java@v5",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  3,
+                                       "started_at":  "2026-11-11T23:30:16Z",
+                                       "completed_at":  "2026-11-11T23:30:18Z"
+                                   },
+                                   {
+                                       "name":  "Revisar código y pruebas",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  4,
+                                       "started_at":  "2026-11-11T23:30:18Z",
+                                       "completed_at":  "2026-11-11T23:30:26Z"
+                                   },
+                                   {
+                                       "name":  "Post Run actions/setup-java@v5",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  7,
+                                       "started_at":  "2026-11-11T23:30:26Z",
+                                       "completed_at":  "2026-11-11T23:30:26Z"
+                                   },
+                                   {
+                                       "name":  "Post Run actions/checkout@v6",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  8,
+                                       "started_at":  "2026-11-11T23:30:26Z",
+                                       "completed_at":  "2026-11-11T23:30:26Z"
+                                   },
+                                   {
+                                       "name":  "Complete job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  9,
+                                       "started_at":  "2026-11-11T23:30:26Z",
+                                       "completed_at":  "2026-11-11T23:30:26Z"
+                                   }
+                               ],
+                     "check_run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/check-runs/130858755230",
+                     "labels":  [
+                                    "ubuntu-latest"
+                                ],
+                     "runner_id":  1000000010,
+                     "runner_name":  "GitHub Actions 1000000010",
+                     "runner_group_id":  0,
+                     "runner_group_name":  "GitHub Actions"
+                 },
+                 {
+                     "id":  130858755279,
+                     "run_id":  43120295469,
+                     "workflow_name":  "CI/CD",
+                     "head_branch":  "main",
+                     "run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/runs/43120295469",
+                     "run_attempt":  1,
+                     "node_id":  "CR_kwDOVp7QUc8AAAAed8okzw",
+                     "head_sha":  "c39a9797676b57f434634af876a1fecb6b816477",
+                     "url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/jobs/130858755279",
+                     "html_url":  "https://github.com/valentina2152/pruebas_corte2/actions/runs/43120295469/job/130858755279",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "created_at":  "2026-11-11T23:30:11Z",
+                     "started_at":  "2026-11-11T23:30:13Z",
+                     "completed_at":  "2026-11-11T23:30:47Z",
+                     "name":  "Cobertura",
+                     "steps":  [
+                                   {
+                                       "name":  "Set up job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  1,
+                                       "started_at":  "2026-11-11T23:30:14Z",
+                                       "completed_at":  "2026-11-11T23:30:15Z"
+                                   },
+                                   {
+                                       "name":  "Run actions/checkout@v6",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  2,
+                                       "started_at":  "2026-11-11T23:30:15Z",
+                                       "completed_at":  "2026-11-11T23:30:16Z"
+                                   },
+                                   {
+                                       "name":  "Run actions/setup-java@v5",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  3,
+                                       "started_at":  "2026-11-11T23:30:16Z",
+                                       "completed_at":  "2026-11-11T23:30:18Z"
+                                   },
+                                   {
+                                       "name":  "Verificar pruebas y cobertura mínima del 90 %",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  4,
+                                       "started_at":  "2026-11-11T23:30:18Z",
+                                       "completed_at":  "2026-11-11T23:30:43Z"
+                                   },
+                                   {
+                                       "name":  "Guardar reportes de pruebas y cobertura",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  5,
+                                       "started_at":  "2026-11-11T23:30:43Z",
+                                       "completed_at":  "2026-11-11T23:30:44Z"
+                                   },
+                                   {
+                                       "name":  "Post Run actions/setup-java@v5",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  9,
+                                       "started_at":  "2026-11-11T23:30:44Z",
+                                       "completed_at":  "2026-11-11T23:30:44Z"
+                                   },
+                                   {
+                                       "name":  "Post Run actions/checkout@v6",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  10,
+                                       "started_at":  "2026-11-11T23:30:44Z",
+                                       "completed_at":  "2026-11-11T23:30:45Z"
+                                   },
+                                   {
+                                       "name":  "Complete job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  11,
+                                       "started_at":  "2026-11-11T23:30:45Z",
+                                       "completed_at":  "2026-11-11T23:30:45Z"
+                                   }
+                               ],
+                     "check_run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/check-runs/130858755279",
+                     "labels":  [
+                                    "ubuntu-latest"
+                                ],
+                     "runner_id":  1000000009,
+                     "runner_name":  "GitHub Actions 1000000009",
+                     "runner_group_id":  0,
+                     "runner_group_name":  "GitHub Actions"
+                 },
+                 {
+                     "id":  130858755381,
+                     "run_id":  43120295469,
+                     "workflow_name":  "CI/CD",
+                     "head_branch":  "main",
+                     "run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/runs/43120295469",
+                     "run_attempt":  1,
+                     "node_id":  "CR_kwDOVp7QUc8AAAAed8olNQ",
+                     "head_sha":  "c39a9797676b57f434634af876a1fecb6b816477",
+                     "url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/jobs/130858755381",
+                     "html_url":  "https://github.com/valentina2152/pruebas_corte2/actions/runs/43120295469/job/130858755381",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "created_at":  "2026-11-11T23:30:11Z",
+                     "started_at":  "2026-11-11T23:30:13Z",
+                     "completed_at":  "2026-11-11T23:30:46Z",
+                     "name":  "Pruebas BDD",
+                     "steps":  [
+                                   {
+                                       "name":  "Set up job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  1,
+                                       "started_at":  "2026-11-11T23:30:14Z",
+                                       "completed_at":  "2026-11-11T23:30:15Z"
+                                   },
+                                   {
+                                       "name":  "Descargar el código",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  2,
+                                       "started_at":  "2026-11-11T23:30:15Z",
+                                       "completed_at":  "2026-11-11T23:30:16Z"
+                                   },
+                                   {
+                                       "name":  "Instalar Java",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  3,
+                                       "started_at":  "2026-11-11T23:30:16Z",
+                                       "completed_at":  "2026-11-11T23:30:18Z"
+                                   },
+                                   {
+                                       "name":  "Ejecutar escenarios BDD",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  4,
+                                       "started_at":  "2026-11-11T23:30:18Z",
+                                       "completed_at":  "2026-11-11T23:30:44Z"
+                                   },
+                                   {
+                                       "name":  "Post Instalar Java",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  7,
+                                       "started_at":  "2026-11-11T23:30:44Z",
+                                       "completed_at":  "2026-11-11T23:30:44Z"
+                                   },
+                                   {
+                                       "name":  "Post Descargar el código",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  8,
+                                       "started_at":  "2026-11-11T23:30:44Z",
+                                       "completed_at":  "2026-11-11T23:30:44Z"
+                                   },
+                                   {
+                                       "name":  "Complete job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  9,
+                                       "started_at":  "2026-11-11T23:30:44Z",
+                                       "completed_at":  "2026-11-11T23:30:44Z"
+                                   }
+                               ],
+                     "check_run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/check-runs/130858755381",
+                     "labels":  [
+                                    "ubuntu-latest"
+                                ],
+                     "runner_id":  1000000012,
+                     "runner_name":  "GitHub Actions 1000000012",
+                     "runner_group_id":  0,
+                     "runner_group_name":  "GitHub Actions"
+                 },
+                 {
+                     "id":  130858755383,
+                     "run_id":  43120295469,
+                     "workflow_name":  "CI/CD",
+                     "head_branch":  "main",
+                     "run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/runs/43120295469",
+                     "run_attempt":  1,
+                     "node_id":  "CR_kwDOVp7QUc8AAAAed8olNw",
+                     "head_sha":  "c39a9797676b57f434634af876a1fecb6b816477",
+                     "url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/jobs/130858755383",
+                     "html_url":  "https://github.com/valentina2152/pruebas_corte2/actions/runs/43120295469/job/130858755383",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "created_at":  "2026-11-11T23:30:11Z",
+                     "started_at":  "2026-11-11T23:30:13Z",
+                     "completed_at":  "2026-11-11T23:30:42Z",
+                     "name":  "Pruebas unitarias",
+                     "steps":  [
+                                   {
+                                       "name":  "Set up job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  1,
+                                       "started_at":  "2026-11-11T23:30:16Z",
+                                       "completed_at":  "2026-11-11T23:30:17Z"
+                                   },
+                                   {
+                                       "name":  "Descargar el código",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  2,
+                                       "started_at":  "2026-11-11T23:30:17Z",
+                                       "completed_at":  "2026-11-11T23:30:18Z"
+                                   },
+                                   {
+                                       "name":  "Instalar Java",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  3,
+                                       "started_at":  "2026-11-11T23:30:18Z",
+                                       "completed_at":  "2026-11-11T23:30:20Z"
+                                   },
+                                   {
+                                       "name":  "Ejecutar pruebas unitarias",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  4,
+                                       "started_at":  "2026-11-11T23:30:20Z",
+                                       "completed_at":  "2026-11-11T23:30:40Z"
+                                   },
+                                   {
+                                       "name":  "Post Instalar Java",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  7,
+                                       "started_at":  "2026-11-11T23:30:40Z",
+                                       "completed_at":  "2026-11-11T23:30:40Z"
+                                   },
+                                   {
+                                       "name":  "Post Descargar el código",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  8,
+                                       "started_at":  "2026-11-11T23:30:40Z",
+                                       "completed_at":  "2026-11-11T23:30:40Z"
+                                   },
+                                   {
+                                       "name":  "Complete job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  9,
+                                       "started_at":  "2026-11-11T23:30:40Z",
+                                       "completed_at":  "2026-11-11T23:30:40Z"
+                                   }
+                               ],
+                     "check_run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/check-runs/130858755383",
+                     "labels":  [
+                                    "ubuntu-latest"
+                                ],
+                     "runner_id":  1000000011,
+                     "runner_name":  "GitHub Actions 1000000011",
+                     "runner_group_id":  0,
+                     "runner_group_name":  "GitHub Actions"
+                 },
+                 {
+                     "id":  130859022063,
+                     "run_id":  43120295469,
+                     "workflow_name":  "CI/CD",
+                     "head_branch":  "main",
+                     "run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/runs/43120295469",
+                     "run_attempt":  1,
+                     "node_id":  "CR_kwDOVp7QUc8AAAAed8427w",
+                     "head_sha":  "c39a9797676b57f434634af876a1fecb6b816477",
+                     "url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/actions/jobs/130859022063",
+                     "html_url":  "https://github.com/valentina2152/pruebas_corte2/actions/runs/43120295469/job/130859022063",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "created_at":  "2026-11-11T23:30:47Z",
+                     "started_at":  "2026-11-11T23:30:49Z",
+                     "completed_at":  "2026-11-11T23:30:51Z",
+                     "name":  "Despliegue (simulado)",
+                     "steps":  [
+                                   {
+                                       "name":  "Set up job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  1,
+                                       "started_at":  "2026-11-11T23:30:49Z",
+                                       "completed_at":  "2026-11-11T23:30:50Z"
+                                   },
+                                   {
+                                       "name":  "Desplegar",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  2,
+                                       "started_at":  "2026-11-11T23:30:50Z",
+                                       "completed_at":  "2026-11-11T23:30:50Z"
+                                   },
+                                   {
+                                       "name":  "Complete job",
+                                       "status":  "completed",
+                                       "conclusion":  "success",
+                                       "number":  3,
+                                       "started_at":  "2026-11-11T23:30:50Z",
+                                       "completed_at":  "2026-11-11T23:30:50Z"
+                                   }
+                               ],
+                     "check_run_url":  "https://api.github.com/repos/valentina2152/pruebas_corte2/check-runs/130859022063",
+                     "labels":  [
+                                    "ubuntu-latest"
+                                ],
+                     "runner_id":  1000000013,
+                     "runner_name":  "GitHub Actions 1000000013",
+                     "runner_group_id":  0,
+                     "runner_group_name":  "GitHub Actions"
+                 }
+             ]
+}
