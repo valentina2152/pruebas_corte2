@@ -23,6 +23,8 @@
         <module name="RedundantImport"/>
         <module name="UnusedLocalVariable"/>
         <module name="EmptyBlock"/>
+        <!-- Regla propia: un punto y coma aislado puede ocultar un error de control. -->
+        <module name="EmptyStatement"/>
 
         <!-- Importaciones explícitas: se ve de dónde viene cada clase. -->
         <module name="AvoidStarImport"/>

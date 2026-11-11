@@ -1,0 +1,29 @@
+﻿[INFO] Scanning for projects...
+[INFO] Loaded 24456 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] 
+[INFO] -------------------< curso.pruebas:pronosticos-java >-------------------
+[INFO] Building pronosticos-java 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (default-cli) @ pronosticos-java ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_expired) PKIX path validation failed: java.security.cert.CertPathValidatorException: validity check failed
+[INFO] Comenzando auditor�a...
+[ERROR] C:\Users\VALENTINA BARRETO\Downloads\pruebasCorte1\src\main\java\pronosticos\CalculadoraPronosticos.java:20:9: Sentencia vac�a. [EmptyStatement]
+Auditor�a concluida.
+[INFO] There is 1 error reported by Checkstyle 13.3.0 with config/checkstyle.xml ruleset.
+[ERROR] src\main\java\pronosticos\CalculadoraPronosticos.java:[20,9] (coding) EmptyStatement: Sentencia vac�a.
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10.906 s
+[INFO] Finished at: 2026-11-11T18:24:33-05:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check (default-cli) on project pronosticos-java: You have 1 Checkstyle violation. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

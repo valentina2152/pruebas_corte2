@@ -1,0 +1,20 @@
+﻿[INFO] Scanning for projects...
+[INFO] Loaded 24456 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] 
+[INFO] -------------------< curso.pruebas:pronosticos-java >-------------------
+[INFO] Building pronosticos-java 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (default-cli) @ pronosticos-java ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_expired) PKIX path validation failed: java.security.cert.CertPathValidatorException: validity check failed
+[INFO] Comenzando auditor�a...
+Auditor�a concluida.
+[INFO] You have 0 Checkstyle violations.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.340 s
+[INFO] Finished at: 2026-11-11T18:24:48-05:00
+[INFO] ------------------------------------------------------------------------
